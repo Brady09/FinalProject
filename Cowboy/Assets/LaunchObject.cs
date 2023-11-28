@@ -8,12 +8,12 @@ public class LaunchObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Change "Player" to the tag of your player GameObject
+        if (other.CompareTag("Player")) 
         {
             Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
             if (playerRb != null)
             {
-                playerRb.velocity = Vector2.zero; // Reset the current velocity to prevent interference
+                playerRb.velocity = Vector2.zero;
                 playerRb.AddForce(Vector2.up * launchForce, ForceMode2D.Impulse);
             }
         }
