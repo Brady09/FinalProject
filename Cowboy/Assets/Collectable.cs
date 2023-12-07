@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public GameObject door; 
-    public int objectsToCollect = 3;
+    public GameObject doorToDelete; 
+    public int requiredCollectibles = 3; 
 
-    private int collectedObjects = 0;
-
-    private void OnTriggerEnter(Collider other)
+    private int collectedCount = 0; 
+    
+    private void OnTriggerEnter2D(Collider other)
     {
-        if (other.CompareTag("Collectible"))
-        {
-            Destroy(other.gameObject); 
-            collectedObjects++;
+        Collect();
+    }
 
-            if (collectedObjects >= objectsToCollect)
-            {
-                Destroy(door); 
-            }
+    private void Collect()
+    {
+        collectedCount++;
+
+        if (collectedCount >= requiredCollectibles)
+        {
+            DestroyDoor();
+        }
+        Destroy(this.gameObject); 
+    }
+
+    private void DestroyDoor()
+    {
+        if (doorToDelete != null)
+        {
+            Destroy(doorToDelete);
         }
     }
 }
